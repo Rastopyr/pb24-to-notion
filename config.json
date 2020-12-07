@@ -1,0 +1,11 @@
+{
+    "pb24": {
+        "merchantID": "",
+        "card": "",
+        "merchantPassword": ""
+    },
+    "notion": {
+        "token": "",
+        "collectionURL": ""
+    }
+}
