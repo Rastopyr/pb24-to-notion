@@ -3,10 +3,8 @@ import calendar
 import hashlib
 import json
 
-
 import requests
 import xmltodict
-
 from notion.client import NotionClient
 from notion.collection import NotionDate
 
@@ -19,7 +17,7 @@ to_string = lambda obj: str(obj).encode('utf-8')
 
 currency_cache = {}
 
-def currency_by_date(date, amount):
+def amount_to_uah(date, amount):
     [value, currency] = amount.split(" ")
 
     cache_key = currency if currency == "UAH" else '{}_{}'.format(currency, date)
@@ -52,12 +50,10 @@ def pb24_to_op_list(pb24_list):
     for value in list_of_charges:
         op_date = datetime.datetime.strptime('{} {}'.format(value["@trandate"], value["@trantime"]), '%Y-%m-%d %H:%M:%S')
 
-        normalized_amount = currency_by_date(
+        normalized_amount = amount_to_uah(
             op_date.strftime('%d.%m.%Y'),
             value["@amount"]
         )
-
-        print(normalized_amount)
 
         op_list.append({
             "id": value['@appcode'],
