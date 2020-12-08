@@ -8,10 +8,19 @@ These instructions will get you prepare envinronment and setup script configurat
 
 ### Prerequisites
 
-This script require created `merchant` in `Privat24` and database view in `Notion`.
+This script require created `merchant` in `Privat24` and database block in `Notion`.
 
 * [Notion database types](https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#bff749e098814c7483ce57f0dd6ab09b)
 * [How to create merchant  in Privat24](https://api.privatbank.ua/#p24/registration)
+
+`Notion` database block should contain next fields:
+
+* `op_id` - id of operation
+* `description` - description of operation
+* `terminal` - terminal description. could help identify source of operation
+* `amount` - amount in UAH currency
+
+Database block could contain any other fields. Adding of new rows will not affect them.
 
 ### Installing
 
@@ -55,3 +64,8 @@ For run export process just run next command
 ```bash
 python pb24-to-notion.py
 ```
+
+### Amount normalization
+
+If bank operation was in non-UAH currency, this script use currency `Privat24` currency archive.
+Amount of this operation will convert to UAH used currency exchange rate of date of this operation.
