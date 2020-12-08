@@ -68,4 +68,5 @@ python pb24-to-notion.py
 ### Amount normalization
 
 If bank operation was in non-UAH currency, this script use currency `Privat24` currency archive.
+
 Amount of this operation will convert to UAH used currency exchange rate of date of this operation.
